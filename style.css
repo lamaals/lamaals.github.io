@@ -15,8 +15,8 @@ body {
 
 .profile-photo {
   width: 150px;
-  height: 150px;
-  border-radius: 50%;
+  height: 200px;
+  border-radius: 60%;
   object-fit: cover;
   margin-bottom: 20px;
 }
