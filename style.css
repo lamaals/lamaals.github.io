@@ -20,7 +20,7 @@ body {
 /* Profile photo */
 .profile-photo {
   width: 200px;              /* adjust size as needed */
-  height: 200px;
+  height: 277px;
   border-radius: 50%;        /* makes it circular */
   object-fit: cover;         /* ensures it fills circle */
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* subtle shadow */
