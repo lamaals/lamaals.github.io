@@ -6,22 +6,41 @@ body {
   padding: 0;
 }
 
+/* Side layout container (you already have this) */
 .container.side-layout {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: center;       /* vertical alignment of photo with text */
+  justify-content: flex-start; /* left-aligns the content */
   max-width: 1000px;
   margin: 80px auto;
   padding: 0 40px;
-  gap: 50px; /* space between photo and text */
+  gap: 50px;                 /* space between photo and text */
 }
 
-.container.side-layout {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 1000px;
-  margin: 80px auto;
-  padding: 0 40px;
-  gap: 50px; /* space between photo and text */
+/* Profile photo */
+.profile-photo {
+  width: 200px;              /* adjust size as needed */
+  height: 200px;
+  border-radius: 50%;        /* makes it circular */
+  object-fit: cover;         /* ensures it fills circle */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* subtle shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-photo:hover {
+  transform: scale(1.05);    
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3); 
+}
+
+/* Optional: make responsive */
+@media (max-width: 768px) {
+  .container.side-layout {
+    flex-direction: column;  /* stack image and text on small screens */
+    align-items: center;
+    text-align: center;
+  }
+  .profile-photo {
+    width: 150px;
+    height: 150px;
+  }
 }
