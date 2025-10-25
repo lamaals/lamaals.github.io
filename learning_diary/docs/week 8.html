@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>CASA0023 Learning Diary - 7&nbsp; week 7 classification II: Indepth</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./week 9.html" rel="next">
+<link href="./week 7.html" rel="prev">
+<link href="./ucl-logo.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5LZK055F2X"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5LZK055F2X', { 'anonymize_ip': true});
+</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background-image: url(banner3.jpg);
+background-size: cover;
+      }
+</style>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./ucl-logo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title"><strong>CASA0023 Learning Diary</strong></span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+</ul>
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/lamaals/Learning-diary-.git" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./week 8.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">week 7 classification II: Indepth</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">week 7 classification II: Indepth</span></h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Week 1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Week 1 Remote sensing: an Arial adventure</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week 2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Week 2 Xaringan: Crafting Stunning Presentations</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week 3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Week 3 Correction: Refining the Lens</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week 4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Week 4 policy: Transformative Shifts</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week 6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Week 5 GEE: Mapping the world</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week 7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Week 6 Classification I: Navigating Machine learning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week 8.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">week 7 classification II: Indepth</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week 9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">week 8 SAR: Reveling SAR</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary"><span class="header-section-number">7.1</span> Summary</a></li>
+  <li><a href="#application" id="toc-application" class="nav-link" data-scroll-target="#application"><span class="header-section-number">7.2</span> Application</a></li>
+  <li><a href="#reflection" id="toc-reflection" class="nav-link" data-scroll-target="#reflection"><span class="header-section-number">7.3</span> Reflection</a></li>
+  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference"><span class="header-section-number">7.4</span> Reference</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/lamaals/Learning-diary-.git/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="summary" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="summary"><span class="header-section-number">7.1</span> Summary</h2>
+<p>This lecture builds upon the foundational concepts covered in last week’s lecture, which focused on&nbsp;CART,&nbsp;Random Forest, and&nbsp;SVM. However, this time, we’ll cover additional principles such as Object-Based analysis, Sub-Pixel analysis, cross validation, and Spatial cross validation but because object-based analysis and sub-pixel analysis are new to me I will talk about them in my diary.</p>
+<p><strong>Object-Based Image analysis</strong></p>
+<p>Object-based image analysis (OBIA) involves grouping pixels into objects based on spectral similarity or external variables like ownership or soil type. These objects have various attributes such as spectral, shape, and neighborhood characteristics. OBIA allows for the inclusion of landscape knowledge by applying rules to classify objects. For example, identifying a group of trees, grass, and water near dense housing as a city park or distinguishing between forest and individual trees. Compared to traditional spectral image analysis, OBIA offers improved accuracy and detail in classification. <span class="citation" data-cites="object-b">(<a href="references.html#ref-object-b" role="doc-biblioref"><span>“Object-Based Image Analysis,”</span> n.d.</a>)</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="object-based-analysis.png" class="img-fluid figure-img" width="600"></p>
+<figcaption class="figure-caption"><strong>Figure (1):</strong> Object-based Analysis. <span class="citation" data-cites="stefanlang">(<a href="references.html#ref-stefanlang" role="doc-biblioref">Stefan Lang, n.d.</a>)</span></figcaption>
+</figure>
+</div>
+<p><strong>Sub-Pixel analysis</strong></p>
+<p>Sub-pixel analysis in remote sensing involves examining the spectral composition within individual pixels to detect subtle changes that may not be apparent at the pixel level. By analysing the fractions or proportions of different land cover types within a single pixel, known as endmembers, using advanced algorithms like spectral unmixing, sub-pixel analysis offers a more detailed understanding of landscape dynamics, especially in areas where different land cover types are mixed within a pixel. This approach enhances change detection accuracy and sensitivity. Sub-pixel processing addresses the possibility of a pixel belonging to different classes in an image segmentation context, increasing the resolution of original images.</p>
+</section>
+<section id="application" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="application"><span class="header-section-number">7.2</span> Application</h2>
+<p>For the application part and after giving a brief about Sub-Pixel analysis and Image-based analysis I will be comparing two studies where each one of them used one of the previous method these two studies are: <u><strong><em>Sub-pixel change detection for urban land-cover analysis via multi-temporal remote sensing images</em></strong></u> <span class="citation" data-cites="du2014">(<a href="references.html#ref-du2014" role="doc-biblioref">DU et al. 2014</a>)</span> and <u><strong>Object-based land cover change detection for cross-sensor images</strong></u> <span class="citation" data-cites="qin2013">(<a href="references.html#ref-qin2013" role="doc-biblioref">Qin et al. 2013</a>)</span></p>
+<p><u><strong>Sub-pixel change detection for urban land-cover analysis via multi-temporal remote sensing images:</strong></u></p>
+<section id="method" class="level4" data-number="7.2.0.1">
+<h4 data-number="7.2.0.1" class="anchored" data-anchor-id="method"><span class="header-section-number">7.2.0.1</span> Method:</h4>
+<p>The proposed method employs an unmixing algorithm to ascertain the proportions of endmembers within a pixel, based on the V-I-S model. Unlike traditional methods yielding binary change results, sub-pixel analysis delves into the variability within pixels, considering all endmembers. Decision-level fusion techniques are used to integrate differential information and determine changes, including class transitions, direction, and intensity. The method involves four key steps: spectral unmixing, differential information generation, change determination based on defined rules, and analysis of change intensity.</p>
+</section>
+<section id="steps" class="level4" data-number="7.2.0.2">
+<h4 data-number="7.2.0.2" class="anchored" data-anchor-id="steps"><span class="header-section-number">7.2.0.2</span> <strong>Steps:</strong></h4>
+<ol type="1">
+<li><strong>Spectral Unmixing:</strong></li>
+</ol>
+<p>Initially, the BPNN unmixing algorithm is employed to produce the abundance of each endmember within a single pixel in images captured at two different dates.</p>
+<ol start="2" type="1">
+<li><strong>Differential Information Generation:</strong></li>
+</ol>
+<p>The discrepancy in abundance for all endmembers within a pixel between two dated images is computed, comprising K fractions represented as Dk.</p>
+<ol start="3" type="1">
+<li><strong>Change Determination:</strong></li>
+</ol>
+<p>Determining change information at the sub-pixel level involves analysing the change indicator to identify changed pixels. This process entails thresholding the change magnitude image of all pixels to create a change map.</p>
+<ol start="4" type="1">
+<li><strong>Change Intensity Analysis:</strong></li>
+</ol>
+<p>Change intensity, a measure of change probability, aids in detecting potential changes. After identifying changed pixels, intensity is categorized into different levels. Higher intensity values identify significant changes, indicating a greater likelihood of real changes within urban areas.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Sub-pixel1.png" class="img-fluid figure-img" width="600"></p>
+<figcaption class="figure-caption"><strong>Figure (2):</strong> Flowchart of the proposed sub-pixel level change detection approach.</figcaption>
+</figure>
+</div>
+</section>
+<section id="experiment" class="level4" data-number="7.2.0.3">
+<h4 data-number="7.2.0.3" class="anchored" data-anchor-id="experiment"><span class="header-section-number">7.2.0.3</span> <strong>Experiment:</strong></h4>
+<p>The study conducted experiments primarily focusing on multi-temporal China-Brazil earth resources satellite images of Shanghai city. These images, captured on March 7, 2005, and May 7, 2009, covered a 1000 × 1000 pixel area, including urban and Pudong New District. Land-cover changes observed mainly involved built-up areas and vegetation, with minor changes in soil and water. Abundance maps of different end members were analyzed for both dates. The proposed method demonstrated higher overall accuracy (89.86%) and kappa coefficient (0.7791) compared to other methods like CVA and PCA, with notable reductions in commission and omission rates. This suggests the effectiveness of the proposed approach in accurately detecting land-cover changes over time.</p>
+</section>
+<section id="results-and-findings-of-the-experiment" class="level4" data-number="7.2.0.4">
+<h4 data-number="7.2.0.4" class="anchored" data-anchor-id="results-and-findings-of-the-experiment"><span class="header-section-number">7.2.0.4</span> <strong>Results and Findings of the Experiment:</strong></h4>
+<ol type="1">
+<li>The proposed method yields dependable results, aligning with ground truth data and photo interpretation. It offers detailed insights such as change transition, direction, and intensity to decision-makers. Changes are quantitatively evaluated, enhancing the delineation of relevant change areas. Additionally, the change intensity analysis provides rich supplementary information, particularly highlighting high probability regions, which closely correspond to actual changes.</li>
+<li>The change matrix illustrates the transitions in land cover among different categories. Analysis reveals that between 2005 and 2009, land-cover alterations predominantly involve shifts from low-albedo to high-albedo (5498 pixels), soil to high-albedo (4157 pixels), low albedo to soil (4008 pixels), and soil to vegetation (2806 pixels). These findings underscore the significant influence of urbanization on land-cover changes in urban regions, particularly evident in transitions from low-albedo to high-albedo and soil to vegetation.</li>
+<li>The findings obtained through sub-pixel level detection offer a higher level of completeness and accuracy compared to pixel-level techniques, offering a wealth of change information to aid decision-making and field assessments. However, methods such as CVA and PCA-based approaches exhibit some errors, notably omission errors, leading to a reduction in overall change detection accuracy.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="sub-pixel2.png" class="img-fluid figure-img" width="600"></p>
+<figcaption class="figure-caption"><strong>Figure (3):</strong> Binary change detection maps obtained by different approaches: (a) The proposed method; (b) CVA; and (c) PCA.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="sub-pixel3.png" width="600" height="73" class="figure-img"></p>
+<figcaption class="figure-caption"><strong>Figure</strong> <strong>(4):</strong> Accuracy and errors of change detection approaches.</figcaption>
+</figure>
+</div>
+<p><u><strong>Object-based land cover change detection for cross-sensor images:</strong></u></p>
+<p>The study focuses on Daqing, located in northeastern China’s Heilongjiang province, known for its diverse land cover and significant land cover changes from the 1960s to the 1990s due to petroleum exploitation. However, environmental quality has improved since the 1990s due to the local government’s eco-friendly initiatives. The study used Landsat 5 TM and IRS-P6 LISS3 images from 1990 and 2006, respectively, for land cover change detection, supplemented with QuickBird images, land use survey maps, field trips, and interviews for data collection and validation.</p>
+</section>
+<section id="method-1" class="level4" data-number="7.2.0.5">
+<h4 data-number="7.2.0.5" class="anchored" data-anchor-id="method-1"><span class="header-section-number">7.2.0.5</span> Method</h4>
+<p>The suggested method involves preprocessing of data, segmenting the images, classifying objects, and accuracy assessment.</p>
+<p><strong>Image preprocessing and transformation</strong></p>
+<p>To ensure compatibility between images, a subset of the IRS image overlapping with the TM image is chosen as T2 and georeferenced to it with an RMSE of under 0.6 pixels. T2’s pixel resolution is adjusted to match the TM images at 30 meters. Similarly, a subset of the TM images overlapping with T2 is selected as T1. Image transformation methods have been used in land cover change detection to reduce redundancy and enhance features. This study introduces a novel approach allowing for classification just once. Eigenvalue analysis suggests that the first six bands contain the most significant information, hence they are utilized for subsequent analysis.</p>
+<p><strong>Object-based classification</strong></p>
+<ol type="1">
+<li>Image segmentation:</li>
+</ol>
+<p>Image segmentation is vital for analyzing remote sensing data. Definiens Professional offers multi-resolution segmentation, a technique merging regions from one-pixel objects upward, considering both pixel value and texture. In this study, it’s applied using the first six bands of a PCA-transformed image. Parameters like homogeneity, shape, and compactness are adjusted based on visual inspection, resulting in successful partitioning of land cover change patches into image objects.</p>
+<ol start="2" type="1">
+<li>Image–object classification:</li>
+</ol>
+<p>Object-based image classification aims to assign components to specific categories. However, conventional classification schemes struggle to capture dynamic land cover changes. A new classification scheme is devised, describing changes between land cover types. Significant spectral and textural differences between images, especially in water areas, prompt the inclusion of subclasses based on water color. Visual interpretation of images aids in selecting 247 objects as samples for training and validation. Object-based classification often employs non-parametric algorithms due to the complexity of image objects’ attributes. In this study, NN classification is applied based on spectral attributes and textural parameters, utilizing the digital number (DN) values of six principal bands for segmentation. The shape of image segments is disregarded as it doesn’t provide significant information related to land cover change types.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="object-based 1.png" class="img-fluid figure-img" width="400"></p>
+<figcaption class="figure-caption"><strong>Figure (5):</strong> Workflow of the proposed approach.</figcaption>
+</figure>
+</div>
+</section>
+<section id="results" class="level4" data-number="7.2.0.6">
+<h4 data-number="7.2.0.6" class="anchored" data-anchor-id="results"><span class="header-section-number">7.2.0.6</span> Results</h4>
+<p>Due to challenges in achieving precise registration accuracy using pixel-based image analysis, especially with cross-sensor images of varying resolutions, alternative validation strategies are needed. In this study, 62 validation polygons comprising 7710 pixels are chosen through visual interpretation to assess object-based classification accuracy. The below table illustrates the confusion matrix as well as detailed accuracy information which reveals highest producer’s accuracies for water-to-water and farmland-to-builtup classes. However, errors occur in distinguishing wetland-to-water and water-to-wetland changes, likely due to spatial confusion during image segmentation. Similarly, confusion between wetland-to-builtup and farmland-to-builtup changes is observed due to spectral similarities. Despite some errors, overall accuracy and kappa coefficient are satisfactory at 83.42% and 0.82, respectively, indicating the effectiveness of the proposed approach in land cover change detection.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="object-based 2.png" class="img-fluid figure-img" width="400"></p>
+<figcaption class="figure-caption"><strong>Figure (6):</strong> Confusion matrix and accuracy of the land cover change map.</figcaption>
+</figure>
+</div>
+<p>The figure depicts the land cover changes in the study area from 1990 to 2006, presenting both current and dynamic land cover information. Visual analysis reveals that the predominant change is ‘farmland-to-farmland’, indicating sustained farmland preservation. Additionally, there’s no notable decline in wetlands, suggesting their conservation during the period. Despite rapid economic growth, urban sprawl appears limited, with few areas transitioning from farmland to urban. Overall, the map indicates effective protection of farmland and wetlands amidst China’s urbanization, highlighting successful land management strategies in the region.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="object-based 3.png" class="img-fluid figure-img" width="400"></p>
+<figcaption class="figure-caption"><strong>Figure (7):</strong> Land cover change map with vector layers: water lines include rivers and irrigation channels; the major roads are highways which cross the study area.</figcaption>
+</figure>
+</div>
+</section>
+<section id="conclusion" class="level4" data-number="7.2.0.7">
+<h4 data-number="7.2.0.7" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">7.2.0.7</span> Conclusion</h4>
+<p>Both studies propose distinct methodologies for analyzing land cover changes using remote sensing data. Study 1 focuses on sub-pixel level change detection, employing an unmixing algorithm to ascertain endmember proportions within pixels and decision-level fusion techniques to identify changes based on defined criteria. Results from experiments on multi-temporal China-Brazil earth resources satellite images demonstrate reliable change detection, providing detailed change information and achieving higher accuracy compared to traditional methods. On the other hand, Study 2 introduces a novel object-based classification approach involving preprocessing, image segmentation, and non-parametric classification algorithms. Despite challenges in distinguishing certain change types, the method demonstrates satisfactory accuracy and offers insights into land cover changes over time. While Study 1 offers more detailed change information, Study 2’s approach may be more suitable for analyzing complex land cover changes. Ultimately, the choice between the two methods depends on the specific requirements and objectives of the analysis.</p>
+</section>
+</section>
+<section id="reflection" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="reflection"><span class="header-section-number">7.3</span> Reflection</h2>
+<p>Today’s lecture was interesting for me because it has expanded my understanding of remote sensing techniques that goes beyond CART, RF, and SVM. Honestly, I got lost in which of these two approaches is more fascinating. &nbsp;In OBIA we approach image analysis is not only based on individual pixels but also by making them into groups of meaningful objects. While Sub-Pixels analysis mainly work on allowing the detection of changes on individual pixels level. The Sub-Pixels method can be useful to use in case of urban environments or transitional ecosystems. I think that in the future this could help in various fields such as environmental monitoring, urban planning (which I find interesting), and disaster management. Furthermore, I believe that it is important to understand the use of these techniques as they might have a crucial role in addressing new challenges such as climate change impacts, habitat loss and urbanization by helping policymakers and stakeholders with detailed information that would help in the decision-making process.</p>
+</section>
+<section id="reference" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="reference"><span class="header-section-number">7.4</span> Reference</h2>
+<p><strong>Sub-pixel change detection for urban land-cover analysis via multi-temporal remote sensing images</strong>.(DU P, LIU S 2014)</p>
+<p><strong>Object-based land cover change detection for cross-sensor images.</strong> ( Y. Qin, Z. Niu 2013).</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-du2014" class="csl-entry" role="listitem">
+DU, Peijun, Sicong LIU, Pei LIU, Kun TAN, and Liang CHENG. 2014. <span>“Sub-Pixel Change Detection for Urban Land-Cover Analysis via Multi-Temporal Remote Sensing Images.”</span> <em>Geo-Spatial Information Science</em> 17 (1): 26–38. <a href="https://doi.org/10.1080/10095020.2014.889268">https://doi.org/10.1080/10095020.2014.889268</a>.
+</div>
+<div id="ref-object-b" class="csl-entry" role="listitem">
+<span>“Object-Based Image Analysis.”</span> n.d. <a href="https://www.gim-international.com/content/article/object-based-image-analysis">https://www.gim-international.com/content/article/object-based-image-analysis</a>.
+</div>
+<div id="ref-qin2013" class="csl-entry" role="listitem">
+Qin, Y., Z. Niu, F. Chen, B. Li, and Y. Ban. 2013. <span>“Object-Based Land Cover Change Detection for Cross-Sensor Images.”</span> <em>International Journal of Remote Sensing</em> 34 (19): 6723–37. <a href="https://doi.org/10.1080/01431161.2013.805282">https://doi.org/10.1080/01431161.2013.805282</a>.
+</div>
+<div id="ref-stefanlang" class="csl-entry" role="listitem">
+Stefan Lang, University of Salzburg. n.d. <span>“Object-Based Image Analysis - An Introduction.”</span> <a href="https://eo4geocourses.github.io/PLUS_OBIA-Introduction/#/1">https://eo4geocourses.github.io/PLUS_OBIA-Introduction/#/1</a>.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./week 7.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Week 6 Classification I: Navigating Machine learning</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./week 9.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">week 8 SAR: Reveling SAR</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

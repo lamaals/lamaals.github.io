@@ -1,0 +1,67 @@
+---
+title: "Week 3 Correction: Refining the Lens  "
+---
+
+## Summary
+
+For this week, we were introduced to Push Broom and Whisk Broom sensors, including differences between them. Then we explored Geometric Correction, Atmospheric Correction, Topographic Correction, and Radiometric which are all methods used in the correction of remote sensing products, as satellite images usually might have flaws. Furthermore, we continued to cover the techniques for joining data and applying enhancement on satellite images.
+
+### Geometric Correction
+
+First the coordination's of the dataset are fed into a mathematical model in order to specify the transformation coefficients then in order to execute a geometric transformation the coefficients will be used which eventually lead to effectively altering the spatial arrangement in the dataset. In other words it is the **"** attempt to correct for positional errors and to transform the original image into a new image that has the geometric characteristics of a map. can you rephrase**"**[@fagan2024]
+
+![**Figure (1):** Geometric Correction process. [@geometri]](geometric%20coorection.png){fig-align="center"}
+
+### Atmospheric Correction
+
+**Atmospheric correction** is the process of scattering and absorption effect removal which are caused by the atmosphere, thus showing the surface reflectance that represents surface properties. [@gisgeography2015]
+
+[**Methods to remove the atmosphere effect:**]{.underline}
+
+**Relative:** This method facilitates the comparison with other images instead of directly removing atmospheric effects by normalising images. Relative correction most common technique is **Dark Object Subtraction (DOS)**, where dark objects with very low reflectance are deducted from the image. This procedure allow the standardization of the images and the mitigation of atmospheric effects.
+
+![**Figure (2)** Dark pixel subtraction. [@mariner]](atmospheric_relative.jpg){fig-align="center"}
+
+**Absolute:** Includes the evaluation of the atmospheric conditions along with the angles of illumination and observation during the capture of the image in order to assess the level of scattering and absorption for each image band. Using these factors, the correction factors are calculated to modify the data from its original at-sensor values to establish more accurate at-surface values. [@atmosphe]
+
+**Empirical line method:** This technique provides an replacement to radiative transfer modelling approaches. It offers a clear approach to calibrating surface reflectance, unless the accessibility of calibration measurements that are static over time is guaranteed.
+
+[**Phases of Atmospheric Correction**]{.underline}
+
+**Atmospheric Correction** is a process that contain two phases. In the first phase, Digital Numbers (DNs) are converted into radiance, and after that into top-of-atmosphere. In the next phase, top-of-atmosphere reflectance is transformed into surface reflectance (known as bottom-of-atmosphere reflectance) this is also known as top-of-canopy reflectance, especially in vegetation studies.
+
+![**Figure (3)** Phases of Atmospheric correction. [@26atm]](phases%20of%20atmospheric%20correction.png){fig-align="center"}
+
+## Application
+
+Applying atmospheric corrections on satellite images is a crucial step that should be performed before conducting any further analysis or processing using those images. However, as we saw earlier, there are multiple approaches with different techniques that varies from image-based empirical correction to model-based methods. Each one of these techniques has its strength and weakness and, in this section, we will highlight two main studies that compared between different approaches like (QUAC, FLAASH and DOS). Those studies are **"[*Comparison and evaluation of atmospheric correction algorithms of QUAC, DOS and FLAASH for HICO hyperspectral imagery*]{.underline}"** [@shi2016] and **"[*A Comparison of Image-Based and Physics-Based Atmospheric Correction Methods for Extracting Snow and Vegetation Cover in Nepal Himalayas Using Landsat 8 OLI Image*s]{.underline}"** [@niraj2022].
+
+[**Comparison for HICO hyperspectral imagery paper:**]{.underline}
+
+This study concludes that all three types of corrections (FLAASH, QUAC, DOS) can remove the effect of atmosphere for HICO hyperspectral image. It also confirms that based on analysing the situ data, FLAASH model have a better performance than QUAC and DOS methods for reducing effect of atmosphere HICO images. Having said that, both QUAC and DOS depend on less input parameters and their computational speed is much faster than FLAASH.
+
+![](week3%20comparison%201.png){fig-align="center"}
+
+[**Comparison for extracting snow and vegetation cover in Nepal Himalayas paper:**]{.underline}
+
+In this study, eight correction methods were applied on Landsat 8 OLI satellite image to find the best model for mapping snow and vegetation covered areas. The study found that FLAASH and 6SV methods determined best snow reflectance values, while DOS3 and QUAC were the worst. Additionally, FLAASH and SIAC methods showed greater vegetation reflectance values and higher ranks of correlating the extracted vegetation spectra with the standard spectra while DOS and QUAC were the lowest.
+
+The study found when compared to other image-based correction methods (QUAC, Aref, COST, DOS, and DOS3), the FLAASH, SIAC, and 6SV methods generate higher snow and vegetation mean reflectance values, thus having a high possibility of mapping true snow and vegetation features.
+
+![](week3%20comparison%202.png){fig-align="center"}
+
+![](week3%20comparison%203.png){fig-align="center"}
+
+#### **Conclusion**
+
+Both studies explore different atmospheric correction methods for remote sensing imagery, with a focus on varying types of imagery and target variables. The first study evaluates FLAASH, QUAC, and DOS correction methods for HICO hyperspectral imagery, concluding that FLAASH performs better in removing atmospheric effects despite its slower computational speed. In contrast, the second study assesses eight correction methods applied to Landsat 8 OLI satellite imagery to map snow and vegetation cover in the Nepal Himalayas, finding that FLAASH and SIAC methods produce superior results for snow and vegetation reflectance. Ultimately, it's not possible to determine that one method is superior to another. Therefore, the selection of an atmospheric correction method relies on the specific objectives and characteristics of the remote sensing analysis.
+
+## Reflection
+
+To be honest, today's lecture was kind of challenging and long, which makes it hard to fully understand. To work on satellite images can by tricky, yet it's important to be able to manipulate them which can prove invaluable for emphasising specific points. It is crucial to understand the various correction methods, as each method serves a specific purpose. Furthermore, the selection of the appropriate approach depends on the variables and characteristics of the analysis. While I really hope to avoid performing correction myself, but I think It is important to know how to apply these methods and when.
+
+## Reference
+
+**Comparison and evaluation of atmospheric correction algorithms of QUAC, DOS and FLAASH for HICO hyperspectral imagery** (Shi, Mao, 2016).
+
+**A Comparison of Image-Based and Physics-Based Atmospheric Correction Methods for Extracting Snow and Vegetation Cover in Nepal Himalayas Using Landsat 8 OLI Images** (Niraj, Gupta 2022).

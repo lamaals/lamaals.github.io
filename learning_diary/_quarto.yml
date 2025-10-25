@@ -1,0 +1,69 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "**CASA0023 Learning Diary**"
+  author: "Lama Alswliman"
+  favicon: "ucl-logo.png"
+  navbar:
+    logo: "ucl-logo.png"
+    collapse: true
+    collapse-below: lg
+    background: light
+    reader-mode: true
+    search: true
+    right:
+      - icon: github
+  sidebar:
+    title: "CASA0023 Learning Diary"
+    style: docked
+    reader-mode: true
+  repo-url: https://github.com/lamaals/Learning-diary-.git
+  repo-actions: [issue]
+  google-analytics:
+    tracking-id: "G-5LZK055F2X"
+    anonymize-ip: true
+  date: "2024-03-22"
+  chapters:
+    - index.qmd
+    
+    - Week 1.qmd
+    
+    - week 2.qmd
+    
+    - week 3.qmd
+    
+    - week 4.qmd
+    
+    - week 6.qmd
+    
+    - week 7.qmd
+    
+    - week 8.qmd
+    
+    - week 9.qmd
+    
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    title-block-banner: banner3.jpg
+
+
+    theme: 
+    # textures.css
+        light: [cerulean, flatly]
+        dark: [cerulean, darkly]
+    code-link: true
+  pdf:
+    # documentclass: scrreprt
+    documentclass: scrbook
+
+
+editor: visual
+
+
+

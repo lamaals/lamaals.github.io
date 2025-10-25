@@ -1,0 +1,9 @@
+# About {.unnumbered}
+
+Hi, I'm Lama, I come from a background in architecture and urban planning. Following my undergraduate studies, I pursued an MSc in Construction Science and Implementation Techniques, in our dissertation, my partners and I innovated a novel clay material characterized by its sustainability and remarkable durability, capable of withstanding substantial tension and pressure forces. This achievement contributed in earning a distinction degree. During my previous master's program, I worked as a senior architect, overseeing the design and construction of buildings across various functions. Additionally, I actively contributed to the regeneration and planning efforts in multiple areas within my country. Driven by my interest in the transformative potential of urban planning and the role of smart cities in societal advancement, I decided to pursue an MSc in Urban Spatial Science at UCL. I'm enthusiastic about exploring how data can be leveraged to create and enrich the fabric of our communities, so this is me and here I'm.
+
+Beside Architecture, urban planning and construction I really love taking photos , capturing beautiful moments, and travailing around the world
+
+![Me on of the construction site (on the corner of a flying canopy)](images/IMG-20220207-WA0034-02.jpg){fig-align="left" width="500"}
+
+![Captured by me.](images/IMG_20230818_180230_921.jpg){fig-align="left" width="500"}

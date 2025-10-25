@@ -1,0 +1,14 @@
+---
+title: "Week 2 Xaringan: Crafting Stunning Presentations"
+---
+
+## Summary
+
+The content of week 2 was about making presentation and learning diaries. Below is presentation that was made using Xaringan about GOSAT-2 satellite.
+
+```{r echo = FALSE, out.width='40%'}
+xaringanExtra::embed_xaringan(
+  url = "https://lamaals.github.io/remotely-sensing-presentation-/",
+  ratio = "16:9")
+
+```

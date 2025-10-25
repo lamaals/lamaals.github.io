@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>CASA0023 Learning Diary - 8&nbsp; week 8 SAR: Reveling SAR</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./references.html" rel="next">
+<link href="./week 8.html" rel="prev">
+<link href="./ucl-logo.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5LZK055F2X"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5LZK055F2X', { 'anonymize_ip': true});
+</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background-image: url(banner3.jpg);
+background-size: cover;
+      }
+</style>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./ucl-logo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title"><strong>CASA0023 Learning Diary</strong></span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+</ul>
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/lamaals/Learning-diary-.git" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./week 9.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">week 8 SAR: Reveling SAR</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">week 8 SAR: Reveling SAR</span></h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Week 1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Week 1 Remote sensing: an Arial adventure</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week 2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Week 2 Xaringan: Crafting Stunning Presentations</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week 3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Week 3 Correction: Refining the Lens</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week 4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Week 4 policy: Transformative Shifts</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week 6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Week 5 GEE: Mapping the world</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week 7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Week 6 Classification I: Navigating Machine learning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week 8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">week 7 classification II: Indepth</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week 9.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">week 8 SAR: Reveling SAR</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary"><span class="header-section-number">8.1</span> Summary</a></li>
+  <li><a href="#application" id="toc-application" class="nav-link" data-scroll-target="#application"><span class="header-section-number">8.2</span> Application</a></li>
+  <li><a href="#reflection" id="toc-reflection" class="nav-link" data-scroll-target="#reflection"><span class="header-section-number">8.3</span> Reflection</a></li>
+  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference"><span class="header-section-number">8.4</span> Reference</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/lamaals/Learning-diary-.git/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="summary" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="summary"><span class="header-section-number">8.1</span> Summary</h2>
+<p>In today’s lecture, we explored Synthetic Aperture Radar (SAR) technology and compared it with the optical imagery we’ve been using throughout this module. We deep dived into the details of SAR, including its polarization and wavelength, and discussed how SAR functions. Specifically, we focused on change detection in SAR images. While we discussed one method in depth during the lecture, the slides presented various other methods for change detection.</p>
+<p><strong>Synthetic Aperture Radar (SAR)</strong></p>
+<p>(SAR) is a radar technology utilized for generating two-dimensional images or three-dimensional reconstructions of various objects, including landscapes. SAR achieves finer spatial resolution by employing the motion of the radar antenna over a target area, which differs from the stationary beam-scanning radars traditionally used. Functioning as an active sensor, SAR transmits microwave signals and captures the signals reflected, or backscattered, from the Earth’s surface. This capability enables SAR to produce high-resolution images using relatively compact antennas. Also SAR possesses unique attributes such as cloud-penetrating capabilities.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="week9.gif" class="img-fluid figure-img" width="400"></p>
+<figcaption class="figure-caption"><strong>Figure (1):</strong> Synthetic Aperture Radar (SAR). <span class="citation" data-cites="sar">(<a href="references.html#ref-sar" role="doc-biblioref"><span>“SAR,”</span> n.d.</a>)</span></figcaption>
+</figure>
+</div>
+<p><strong>SAR Polarization and Scattering Mechanisms</strong></p>
+<p>Polarization refers to the orientation of the plane in which the transmitted electromagnetic wave swings. SAR sensors usually transmit linearly polarized whereby the advantage of radar sensors is that signal polarization can be precisely controlled on both transmit and receive. Signal strength of different polarizations carries information about the imaged surface structure, based on different types of scattering which are rough surface, volume, and double bounce scattering. <span class="citation" data-cites="earthsciencedatasystems2020">(<a href="references.html#ref-earthsciencedatasystems2020" role="doc-biblioref">Earth Science Data Systems 2020</a>)</span></p>
+<ul>
+<li><p>Rough surface scattering, such as that caused by bare soil or water, is most sensitive to VV scattering.</p></li>
+<li><p>Volume scattering, for example, caused by the leaves and branches in a forest canopy, is most sensitive to cross-polarized data like VH or HV.</p></li>
+<li><p>The last type of scattering, double bounce, is caused by buildings, tree trunks, or inundated vegetation and is most sensitive to an HH polarized signal.</p></li>
+</ul>
+<p>Lastly, as wavelength changes signal penetration depth, it drives the amount of signal attributed to different scattering types.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="week9 2.jpg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption"><strong>Figure (2):</strong> SAR Polarization and Scattering. <span class="citation" data-cites="earthsciencedatasystems2020">(<a href="references.html#ref-earthsciencedatasystems2020" role="doc-biblioref">Earth Science Data Systems 2020</a>)</span></figcaption>
+</figure>
+</div>
+<p><strong>Change Detection in SAR</strong></p>
+<p>Change detection in (SAR) images involves identifying changes in land cover over time by examining and contrasting two or more SAR images captured at different times but covering the same geographic region. This method is highly beneficial in remote sensing applications due to SAR’s ability to acquire images regardless of weather conditions and its capability to penetrate clouds and darkness. This technique is highly valuable to a large number of applications, such as flood detection, disaster monitoring, urban planning, and land cover data monitoring. However, the inherent speckle noise in SAR images can lead to false alarms and misdetections.<span class="citation" data-cites="shukla2023">(<a href="references.html#ref-shukla2023" role="doc-biblioref">Shukla et al. 2023</a>)</span></p>
+</section>
+<section id="application" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="application"><span class="header-section-number">8.2</span> Application</h2>
+<p>In this application section, I’ll deep dive into the study of change detection in SAR images. While we’ve explored various techniques and methods for change detection in previous lectures, I’ve chosen to focus on a methodology that hasn’t been extensively covered. My aim is to introduce a new approach that offers insights beyond what’s been discussed in class, enriching my understanding and exploration of SAR image analysis for change detection purposes in my last learning diary entry.</p>
+<p><u><strong>Change Detection in Synthetic Aperture Radar Images based on Image Fusion and Fuzzy Clustering:</strong></u> <span class="citation" data-cites="gong2012">(<a href="references.html#ref-gong2012" role="doc-biblioref">Gong, Zhou, and Ma 2012</a>)</span></p>
+<p>This paper highlights the challenges in change detection in Synthetic Aperture Radar (SAR) images, primarily due to speckle noise. The paper suggests the use of the ratio operator over subtraction for SAR images to handle speckle noise and calibration errors. To enhance change detection, it introduces image fusion to combine mean-ratio and log-ratio images. Furthermore, it proposes a robust fuzzy clustering algorithm that incorporates spatial context to improve resistance against noise and enhance change detection accuracy.</p>
+<p><strong>Methodology</strong></p>
+<p>The paper methodology proposed a new approach for change detection in SAR images, made of two main steps: generating a difference image through image fusion and detecting changed areas in the fused image using an improved Fuzzy C-Means (FCM) algorithm:</p>
+<ul>
+<li><p><strong>Image Fusion</strong> techniques are used to improve image quality, mainly focusing on pixel-level fusion using methods like the discrete wavelet transform (DWT). The DWT separates frequencies in time and space in efficient manner, making it suitable for change detection tasks with large volumes of image data. The fusion process consists of DWT computation of each source image, fusing corresponding coefficients, and applying inverse DWT to obtain the fused result.</p></li>
+<li><p><strong>Fuzzy Clustering</strong>: Clustering to differentiate between changed and unchanged areas in the fused image is performed by using an improved FCM algorithm. Traditional FCM algorithms often lack robustness to noise, prompting the development of variants like FCM_S and FGFCM incorporating local spatial information. However, parameter tuning is needed for these approaches and may still be sensitive to noise. To address this, a robust Fuzzy Local Information C-Means (FLICM) algorithm is proposed. It utilises a fuzzy factor to balance noise robustness and maintain image detail. Additional improvement is made by replacing spatial distance with the local coefficient of variation to better handle noise resulting in the reformulated <strong>RFLICM</strong> algorithm.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="week9 3.png" class="img-fluid figure-img" width="300"></p>
+<figcaption class="figure-caption"><strong>Figure (3):</strong> Flowchart of the proposed change detection approach.</figcaption>
+</figure>
+</div>
+<section id="experiments" class="level4" data-number="8.2.0.1">
+<h4 data-number="8.2.0.1" class="anchored" data-anchor-id="experiments"><span class="header-section-number">8.2.0.1</span> Experiments</h4>
+<p>To assess the proposed method effectiveness, the paper ran experiments on three different data sets. I will discuss in detail one of them as I believe it is adequate for this section:</p>
+<ul>
+<li><strong>Bern data set</strong></li>
+</ul>
+<p>Wavelet image fusion effectiveness in generating difference images was evaluated against mean-ratio and log-ratio methods. The fused difference image captured step changes, suppressing unchanged regions using wavelet coefficients from the log-ratio image. Results showed that log-ratio operator PCC was 99.27% for Otsu and 99.24% for K-means, while the proposed approach achieved the highest PCC (99.35% for Otsu and 99.36% for K-means) and kappa (0.781 for Otsu and 0.784 for K-means). While mean-ratio image produced more spots in change detection due to speckle effects, the log-ratio image had fewer spots but suffered from information loss in changed areas. The wavelet fusion image reduced errors in change detection results. In the second experiment, the RFLICM algorithm impact on SAR-image change detection using wavelet fusion difference images was evaluated. Traditional FCM produced many spots due to its lack of spatial context consideration. However, FLICM and RFLICM yielded robust change detection maps, with RFLICM outperforming FLICM and FCM with a PCC of 99.68%, 99.66%, and 99.37% respectively.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="week9 4.png" class="img-fluid figure-img" width="400"></p>
+<figcaption class="figure-caption"><strong>Figure (4):</strong> Change detection results of the Bern data set based on the three difference images obtained by Otsu. (a) Based on the mean-ratio operator. (b) Based on the log-ratio operator. (c) Based on wavelet fusion.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="week9 5.png" class="img-fluid figure-img" width="400"></p>
+<figcaption class="figure-caption"><strong>Figure (5):</strong> Change detection results of the Bern data set based on the three difference images obtained by K-means. (a) Based on the mean-ratio operator. (b) Based on the log-ratio operator. (c) Based on wavelet fusion.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="week9 6.png" class="img-fluid figure-img" width="400"></p>
+<figcaption class="figure-caption"><strong>Figure (6):</strong> Change detection results of the Bern data set achieved by (a) FCM, (b) FLICM, and (c) proposed RFLICM.</figcaption>
+</figure>
+</div>
+</section>
+<section id="conclusion" class="level4" data-number="8.2.0.2">
+<h4 data-number="8.2.0.2" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">8.2.0.2</span> Conclusion</h4>
+<p>The method used in change detection in (SAR) images combines wavelet image fusion and an improved fuzzy clustering algorithm, Robust Fuzzy Local Information C-Means (RFLICM). This method outperforms other methods like image differencing technique which struggles due to the speckle noise presence as well as the statistical properties of SAR images being non-robust to calibration errors. The wavelet fusion approach in the proposed method improves changed region information and suppresses background noise by integrating mean-ratio and log-ratio images. Meanwhile, the RFLICM algorithm leverages local spatial and gray information which make it more accurate and less sensitive to the probability statistics model than traditional thresholding techniques. Results show that this method outperforms traditional ones, by wavelet fusion strategy integrating with log-ratio and mean-ratio operators, and RFLICM showing fewer errors and spots in change detection results. I really like this approach because and according to my understanding this can be useful in providing a more accurate reflection for real world change detection and better suppression of background noise.</p>
+</section>
+</section>
+<section id="reflection" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="reflection"><span class="header-section-number">8.3</span> Reflection</h2>
+<p>It was really interesting to cover and go deep in the change detection of SAR images methods. For me I feel like because I’m interested in using sattelite images and remote sensing to map the impact of conflict and to detect changes in those areas. In the lectures we talked about images enhancements methods and image fusion was one of them. I got intrigued in finding out more about image fusion methods especially the ones that we haven’t covered. For this reason, I searched for discrete wavelet transform, which was surprisingly an eye opening because I learned so much about the SAR images change detection and what are the hardships in its applications. I think this change detaction method is crucial for humanitarian organization work in detecting in a precise manner where to focus their efforts and the most damaged areas and buildings. This will eventually lead to deliver the most efficent excution plan for any humanitarian intervention. Some of the stuff that are covered in this lecture was mentioned before but briefly like polarization and scattering although they are simple but they have a great importance.</p>
+</section>
+<section id="reference" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="reference"><span class="header-section-number">8.4</span> Reference</h2>
+<p><strong>Change Detection in Synthetic Aperture Radar Images based on Image Fusion and Fuzzy Clustering</strong> (Gong.M, Zhou.Z 2012)</p>
+<p><strong>Change Detection on SAR Images</strong> (R.A. Alagu Raja,K. Vaiyammal 2017).</p>
+<p><strong>Deep Learning-Based Suppression of Speckle-Noise in Synthetic Aperture Radar (SAR) Images: A Comprehensive Review</strong> (Kant Shukla.S, K. Dwivedi.S 2023).</p>
+<p><strong>Deep Despeckling of SAR Images to Improve Change Detection Performance</strong> (Ihmeida.M, Shahzad.M 2023).</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-earthsciencedatasystems2020" class="csl-entry" role="listitem">
+Earth Science Data Systems, NASA. 2020. <span>“What Is Synthetic Aperture Radar? | Earthdata.”</span> <a href="https://www.earthdata.nasa.gov/learn/backgrounders/what-is-sar">https://www.earthdata.nasa.gov/learn/backgrounders/what-is-sar</a>.
+</div>
+<div id="ref-gong2012" class="csl-entry" role="listitem">
+Gong, Maoguo, Zhiqiang Zhou, and Jingjing Ma. 2012. <span>“Change Detection in Synthetic Aperture Radar Images Based on Image Fusion and Fuzzy Clustering.”</span> <em>IEEE Transactions on Image Processing</em> 21 (4): 2141–51. <a href="https://doi.org/10.1109/TIP.2011.2170702">https://doi.org/10.1109/TIP.2011.2170702</a>.
+</div>
+<div id="ref-sar" class="csl-entry" role="listitem">
+<span>“SAR.”</span> n.d. <a href="http://labs.cas.usf.edu/geodesy/sar.html">http://labs.cas.usf.edu/geodesy/sar.html</a>.
+</div>
+<div id="ref-shukla2023" class="csl-entry" role="listitem">
+Shukla, Ashwani Kant, Sanjay K. Dwivedi, Ganesh Chandra, and Raj Shree. 2023. <span>“Deep Learning-Based Suppression of Speckle-Noise in Synthetic Aperture Radar (SAR) Images: A Comprehensive Review.”</span> In, edited by Amit Kumar, Gheorghita Ghinea, Suresh Merugu, and Takako Hashimoto, 693–705. Singapore: Springer Nature. <a href="https://doi.org/10.1007/978-981-19-2358-6_62">https://doi.org/10.1007/978-981-19-2358-6_62</a>.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./week 8.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">week 7 classification II: Indepth</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

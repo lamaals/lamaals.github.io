@@ -6,41 +6,140 @@ body {
   padding: 0;
 }
 
-/* Side layout container (you already have this) */
+/* --- Main layout --- */
 .container.side-layout {
   display: flex;
-  align-items: center;       /* vertical alignment of photo with text */
-  justify-content: flex-start; /* left-aligns the content */
-  max-width: 1000px;
-  margin: 80px auto;
+  align-items: flex-start; /* keep everything aligned to the top */
+  justify-content: center;
+  max-width: 1200px;
+  margin: 40px auto; /* reduced top margin to push image up */
   padding: 0 40px;
-  gap: 50px;                 /* space between photo and text */
+  gap: 60px;
 }
 
-/* Profile photo */
+/* --- Left section (photo + links) --- */
+.profile-section {
+  flex: 0 0 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 10px; /* slightly pushes content higher */
+}
+
 .profile-photo {
-  width: 200px;              /* adjust size as needed */
-  height: 200px;
-  border-radius: 50%;        /* makes it circular */
-  object-fit: cover;         /* ensures it fills circle */
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* subtle shadow */
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 15px;
 }
 
 .profile-photo:hover {
-  transform: scale(1.05);    
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3); 
+  transform: scale(1.05);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
 }
 
-/* Optional: make responsive */
-@media (max-width: 768px) {
+.specialization {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 10px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.links {
+  margin-top: 10px;
+}
+
+.links a {
+  color: #0073b1;
+  text-decoration: none;
+  font-weight: 500;
+  margin: 0 5px;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
+/* --- Right section (content) --- */
+.content-section {
+  flex: 1;
+  max-width: 800px;
+}
+
+.content-section h1 {
+  font-size: 2rem;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.intro {
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+ul ul {
+  list-style-type: circle;
+  margin-left: 20px;
+}
+
+footer {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* --- Responsive (for mobile) --- */
+@media (max-width: 900px) {
   .container.side-layout {
-    flex-direction: column;  /* stack image and text on small screens */
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .profile-section {
     align-items: center;
     text-align: center;
+    margin-top: 0;
   }
-  .profile-photo {
-    width: 150px;
-    height: 150px;
+
+  .content-section {
+    text-align: center;
   }
+}
+
+.links {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.links a {
+  color: #0073b1; /* LinkedIn blue base color */
+  text-decoration: none;
+  font-size: 1.5rem;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.links a:hover {
+  transform: scale(1.2);
+}
+
+/* Optional: custom colors per icon */
+.links a[href*="linkedin"] i {
+  color: #0077b5;
+}
+
+.links a[href*="github"] i {
+  color: #333;
+}
+
+.links a[href^="mailto:"] i {
+  color: #d44638;
 }
