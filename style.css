@@ -28,11 +28,19 @@ body {
 }
 
 .profile-photo {
+<<<<<<< HEAD
   width: 180px;
   height: 180px;
   border-radius: 50%;
   object-fit: cover;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+=======
+  width: 200px;              /* adjust size as needed */
+  height: 277px;
+  border-radius: 70%;        /* makes it circular */
+  object-fit: cover;         /* ensures it fills circle */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* subtle shadow */
+>>>>>>> 0efb84fabe5c281087ea28b657907ecb4fd650a4
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   margin-bottom: 15px;
 }
